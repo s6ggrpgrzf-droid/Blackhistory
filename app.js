@@ -78,6 +78,7 @@
     // curtains part
     idleMsg.classList.add("hidden");
     screenWrap.classList.add("open");
+    screenWrap.classList.add("has-video");
     document.body.classList.add("watching");
     grainOn();
     // roll film
@@ -94,6 +95,7 @@
   function closeHouse() {
     // film over: curtains close, house lights up
     screenWrap.classList.remove("open");
+    screenWrap.classList.remove("has-video");
     document.body.classList.remove("watching");
     grainOff();
     player.pause();
@@ -116,13 +118,6 @@
     if (player.getAttribute("src")) {
       filmNote.textContent = "This reel wouldn't thread. Try another film.";
     }
-  });
-
-  // the screen adapts to each film: 4:3 for most, 16:9 for the widescreen ones
-  screenWrap.style.aspectRatio = "4/3";
-  player.addEventListener("loadedmetadata", function () {
-    var w = player.videoWidth, h = player.videoHeight;
-    if (w > 0 && h > 0) screenWrap.style.aspectRatio = w + "/" + h;
   });
 
   // tap the screen to pause / resume
