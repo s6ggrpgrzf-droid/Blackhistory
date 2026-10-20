@@ -118,6 +118,13 @@
     }
   });
 
+  // the screen adapts to each film: 4:3 for most, 16:9 for the widescreen ones
+  screenWrap.style.aspectRatio = "4/3";
+  player.addEventListener("loadedmetadata", function () {
+    var w = player.videoWidth, h = player.videoHeight;
+    if (w > 0 && h > 0) screenWrap.style.aspectRatio = w + "/" + h;
+  });
+
   // tap the screen to pause / resume
   screenWrap.addEventListener("click", function () {
     if (!curFilm) return;
