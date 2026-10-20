@@ -10,9 +10,9 @@
 
   var films = [], curFilm = null;
 
-  /* ---------- chasing bulbs around the marquee ---------- */
+  /* ---------- chasing bulbs around the marquee (sequential) ---------- */
   (function bulbs() {
-    var box = $("bulbs"), N = 28;
+    var box = $("bulbs"), N = 36;
     for (var i = 0; i < N; i++) {
       var b = document.createElement("i");
       var t = i / N;
@@ -21,8 +21,9 @@
       else if (t < 0.5) { x = 100; y = (t - 0.35) / 0.15 * 100; }    // right
       else if (t < 0.85) { x = 100 - (t - 0.5) / 0.35 * 100; y = 100; } // bottom
       else { x = 0; y = 100 - (t - 0.85) / 0.15 * 100; }             // left
-      b.style.left = "calc(" + x + "% - 4px)";
-      b.style.top = "calc(" + y + "% - 4px)";
+      b.style.left = "calc(" + x + "% - 5px)";
+      b.style.top = "calc(" + y + "% - 5px)";
+      b.style.animationDelay = (i / N * 1.8).toFixed(3) + "s";
       box.appendChild(b);
     }
   })();
